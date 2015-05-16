@@ -11,6 +11,7 @@
 		987CE56A1B077DEB00DEE471 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987CE5691B077DEB00DEE471 /* LandingViewController.swift */; };
 		987CE56F1B07AD5400DEE471 /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 987CE56E1B07AD5400DEE471 /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a */; };
 		987CE5711B07AD5A00DEE471 /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 987CE5701B07AD5A00DEE471 /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a */; };
+		987CE5731B07C40100DEE471 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987CE5721B07C40100DEE471 /* CoreLocation.framework */; };
 		98D8922E1B0697C4004FBF6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8922D1B0697C4004FBF6A /* AppDelegate.swift */; };
 		98D892331B0697C4004FBF6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D892311B0697C4004FBF6A /* Main.storyboard */; };
 		98D892351B0697C4004FBF6A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D892341B0697C4004FBF6A /* Images.xcassets */; };
@@ -36,6 +37,7 @@
 		987CE5691B077DEB00DEE471 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		987CE56E1B07AD5400DEE471 /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation-FBSDKCoreKit.a"; path = "Pods/../build/Release-iphoneos/libPods-FBMessengerShareLocation-FBSDKCoreKit.a"; sourceTree = "<group>"; };
 		987CE5701B07AD5A00DEE471 /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation-FBSDKLoginKit.a"; path = "Pods/../build/Debug-iphoneos/libPods-FBMessengerShareLocation-FBSDKLoginKit.a"; sourceTree = "<group>"; };
+		987CE5721B07C40100DEE471 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		98D892281B0697C4004FBF6A /* FBMessengerShareLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBMessengerShareLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D8922C1B0697C4004FBF6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98D8922D1B0697C4004FBF6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				987CE5731B07C40100DEE471 /* CoreLocation.framework in Frameworks */,
 				987CE5711B07AD5A00DEE471 /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a in Frameworks */,
 				987CE56F1B07AD5400DEE471 /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a in Frameworks */,
 				8906387C5F83DDCD8B2DE600 /* libPods-FBMessengerShareLocation.a in Frameworks */,
@@ -133,6 +136,7 @@
 		EF52ADEF3C9C06902BC750A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				987CE5721B07C40100DEE471 /* CoreLocation.framework */,
 				987CE5701B07AD5A00DEE471 /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a */,
 				987CE56E1B07AD5400DEE471 /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a */,
 				4544552169647B30D1CAC4C9 /* libPods-FBMessengerShareLocation.a */,
