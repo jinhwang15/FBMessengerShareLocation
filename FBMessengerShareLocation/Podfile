@@ -1,0 +1,16 @@
+# Uncomment this line to define a global platform for your project
+
+platform :ios, '8.0'
+
+target 'FBMessengerShareLocation' do
+
+pod 'FBSDKCoreKit'
+pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
+pod 'FBSDKMessengerShareKit'
+end
+
+target 'FBMessengerShareLocationTests' do
+
+end
+
