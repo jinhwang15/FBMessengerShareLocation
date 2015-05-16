@@ -12,6 +12,7 @@
 		98D892351B0697C4004FBF6A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D892341B0697C4004FBF6A /* Images.xcassets */; };
 		98D892381B0697C4004FBF6A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98D892361B0697C4004FBF6A /* LaunchScreen.xib */; };
 		98D892441B0697C4004FBF6A /* FBMessengerShareLocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D892431B0697C4004FBF6A /* FBMessengerShareLocationTests.swift */; };
+		98D892681B06D14C004FBF6A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D892671B06D14C004FBF6A /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		98D8923D1B0697C4004FBF6A /* FBMessengerShareLocationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FBMessengerShareLocationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D892421B0697C4004FBF6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98D892431B0697C4004FBF6A /* FBMessengerShareLocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBMessengerShareLocationTests.swift; sourceTree = "<group>"; };
+		98D892671B06D14C004FBF6A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				98D8922D1B0697C4004FBF6A /* AppDelegate.swift */,
 				98D892311B0697C4004FBF6A /* Main.storyboard */,
+				98D892671B06D14C004FBF6A /* LoginViewController.swift */,
 				98D892341B0697C4004FBF6A /* Images.xcassets */,
 				98D892361B0697C4004FBF6A /* LaunchScreen.xib */,
 				98D8922B1B0697C4004FBF6A /* Supporting Files */,
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98D892681B06D14C004FBF6A /* LoginViewController.swift in Sources */,
 				98D8922E1B0697C4004FBF6A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +413,7 @@
 				98D892491B0697C4004FBF6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98D8924A1B0697C4004FBF6A /* Build configuration list for PBXNativeTarget "FBMessengerShareLocationTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				98D8924C1B0697C4004FBF6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
