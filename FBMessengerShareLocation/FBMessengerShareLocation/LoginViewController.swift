@@ -16,30 +16,40 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // set Navigation Controller as Hidden
+        self.navigationController?.navigationBarHidden=true;
         
-        if (FBSDKAccessToken.currentAccessToken() != nil) {
+        // Check user if already logged in
+        userAlreadyLoggedInCheck()
+        
+    }
+
+    override func didReceiveMemoryWarning()
+    {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func userAlreadyLoggedInCheck()
+    {
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
             // User is already logged in, do work such as go to next view controller.
             
             returnUserData();
-            
-        } else {
+        }
+        else
+        {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
             self.view.addSubview(loginView)
             loginView.center = self.view.center
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
         }
-        
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // Facebook Delegate Methods
-    
+
     func loginButton(loginButton: FBSDKLoginButton!,
         didCompleteWithResult result: FBSDKLoginManagerLoginResult!,
         error: NSError!) {
@@ -81,7 +91,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             {
                 println("fetched user: \(result)")
                 
-                
                 let userName : NSString = result.valueForKey("name") as! NSString
                 println("User Name is: \(userName)")
                 self.fbUserName=userName
@@ -91,27 +100,22 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 self.fbUserEmail=userEmail
                 
                 self.performSegueWithIdentifier("landingSegue", sender: self)
-                
             }
         })
     }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
         // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
-        if (segue.identifier == "landingSegue") {
-            
+        if (segue.identifier == "landingSegue")
+        {
             var lnd = segue.destinationViewController as! LandingViewController;
+            
+            // Pass the user data to the new view controller.
             lnd.userName = fbUserName as! String;
             lnd.userEmail = fbUserEmail as! String;
-        }
-        
+        }        
     }
-    
-    
-
-
 }

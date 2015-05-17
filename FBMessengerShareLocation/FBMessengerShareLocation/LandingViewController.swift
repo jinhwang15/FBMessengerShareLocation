@@ -8,26 +8,79 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
-class LandingViewController: UIViewController, CLLocationManagerDelegate  {
+class LandingViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate  {
 // account data
-    @IBOutlet var userNameLabel: UILabel!
+    
+    
+    @IBOutlet var changeTimeTextField: UITextField!
+    
+    @IBOutlet var userAddressLabel: UILabel!
+    
+    @IBOutlet var currentLocationView: UIView!
+    
+    @IBOutlet var mapView: MKMapView!
+    
+    var datePickerAccessoryView: UIView!
+    
+    var datePickerView: UIView!
+    
+    var datePickerComponent: UIDatePicker!
+    
+    var DateInFormat:String="";
     
     let locationManager = CLLocationManager()
     var userName: String = "";
     var userEmail: String = "";
     var locationStatus: String = "";
-    
+    var addressString : String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        userNameLabel.text=userName;
+        // set Navigation Controller as Hidden
+        self.navigationController?.navigationBarHidden=false;
+        self.navigationItem.hidesBackButton=true;
+        
+        self.navigationItem.title=userName;
+        
+        
+        //initializing
+        
+        self.datePickerComponent=UIDatePicker(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 220))
+        
+        self.datePickerAccessoryView=UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 60))
+        
+        
+        
+        self.datePickerView=UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 220))
+
+       self.datePickerView.addSubview(self.datePickerComponent)
+        
+        // date parametresi dönen metod
+        
+        var todaysDate:NSDate = NSDate()
+        var dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
+        
+        DateInFormat = dateFormatter.stringFromDate(todaysDate)
+        
+        // set TextField's input view and accessory view
+        changeTimeTextField.inputView=self.datePickerView
+        
+       changeTimeTextField.inputAccessoryView=self.datePickerAccessoryView
+
+        changeTimeTextField.text=DateInFormat
+        
+        datePickerComponent .setDate(todaysDate, animated: false)
+        
+        createFBSDKMessengerButton()
         
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.distanceFilter = kCLLocationAccuracyHundredMeters
         locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.requestWhenInUseAuthorization()
         
         // Do any additional setup after loading the view.
     }
@@ -36,6 +89,41 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate  {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func createFBSDKMessengerButton() {
+        
+        var fbBtn = FBSDKMessengerShareButton.rectangularButtonWithStyle(.Blue)
+        fbBtn.addTarget(self, action: "_shareButtonPressed:" , forControlEvents: .TouchUpInside)
+        //setting for fbBtn if needed
+        self.view.addSubview(fbBtn)
+        
+        fbBtn.frame=CGRectMake(self.view.frame.origin.x + 30, self.view.frame.size.height - 70, 260, 50)
+    }
+    
+    @IBAction func _shareButtonPressed(sender: AnyObject) {
+        let result = FBSDKMessengerSharer.messengerPlatformCapabilities().rawValue & FBSDKMessengerPlatformCapability.Image.rawValue
+        if result != 0 {
+            // ok now share
+            
+            UIGraphicsBeginImageContext(self.currentLocationView.bounds.size);
+            
+            self.currentLocationView.drawViewHierarchyInRect(self.currentLocationView.bounds, afterScreenUpdates: true)
+            var image:UIImage = UIGraphicsGetImageFromCurrentImageContext();
+            
+            UIGraphicsEndImageContext();
+            
+            var sharingImage: UIImage
+            
+            sharingImage = image;
+            
+            FBSDKMessengerSharer.shareImage(sharingImage, withOptions:nil)
+            
+        } else {
+            // not installed then open link. Note simulator doesn't open iTunes store.
+            UIApplication.sharedApplication().openURL(NSURL(string: "itms://itunes.apple.com/us/app/facebook-messenger/id454638411?mt=8")!)
+        }
+    }
+    
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
      
         switch status {
@@ -44,9 +132,13 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate  {
             break
         case CLAuthorizationStatus.Denied:
             locationStatus = "Access: Denied"
+            locationManager.requestWhenInUseAuthorization()
+
             break
         case CLAuthorizationStatus.NotDetermined:
             locationStatus = "Access: NotDetermined"
+            locationManager.requestWhenInUseAuthorization()
+
             break
         default:
             locationStatus = "Access: Allowed"
@@ -58,12 +150,32 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate  {
     }
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("Error while updating location " + error.localizedDescription)
+        
+        userAddressLabel.text="Couldn't find location...";
+
     }
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        
+        let location = locations.last as! CLLocation
+        
+        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.mapView.setRegion(region, animated: true)
+        
+        var objectAnnotation = MKPointAnnotation()
+        objectAnnotation.coordinate = center
+
+        objectAnnotation.title = addressString
+        self.mapView.addAnnotation(objectAnnotation)
+        
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
             
             if (error != nil) {
-                println("Reverse geocoder failed with error" + error.localizedDescription)
+                println("Reverse geocoder failed with error" + error.localizedDescription
+                )
+            self.userAddressLabel.text="Couldn't find location...";
+
                 return
             }
             
@@ -80,9 +192,7 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate  {
         
         println("-> Finding user address...")
         
-                
-                var addressString : String = ""
-                if placemark.ISOcountryCode == "TW" /*Address Format in Chinese*/ {
+                    if placemark.ISOcountryCode == "TW" {
                     if placemark.country != nil {
                         addressString = placemark.country
                     }
@@ -123,7 +233,12 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate  {
                 }
                 
                 println(addressString)
+        
+        
+        
+        userAddressLabel.text="Hi, I am at "+addressString + " at "+DateInFormat;
             }
+    
 
 //    func shareImage() {
 //        
