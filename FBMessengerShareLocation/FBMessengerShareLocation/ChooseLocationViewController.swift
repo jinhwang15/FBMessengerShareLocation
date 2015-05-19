@@ -91,10 +91,15 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
                 
                 if placemarks.count > 0 {
                     let pm = placemarks[0] as! CLPlacemark
-                    self.getLocationAddress(pm)
+                    
+                    self.addressString = self.selectedLocation!.getLocationAddress(pm)
+                    
+                    self.objectAnnotation.title=self.addressString
+
+                    
                 } else {
                     
-                    self.objectAnnotation.title="Couldn't find address info...";
+                    self.objectAnnotation.title="Couldn't find address info.";
                     
                     println("Problem with the data received from geocoder")
                 }
@@ -119,7 +124,7 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
         return nil
     }
 
-//MARK - Pick and Cancel Button Actions -
+//MARK: - Pick and Cancel Button Actions -
     
     @IBAction func cancelButtonTouched(sender: UIButton) {
         
@@ -135,65 +140,6 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
             selectedLocationDelegate?.locationSelected(selectedLocation)
         }
         self .dismissViewControllerAnimated(true, completion: nil)
-        
-    }
-    
-
-    func getLocationAddress(placemark : CLPlacemark) {
-        
-        
-        if (!addressString.isEmpty)
-        {
-            addressString.removeAll(keepCapacity: true)
-        }
-        
-        println("-> Finding user address...")
-        
-        if placemark.ISOcountryCode == "TW" {
-            if placemark.country != nil {
-                addressString = placemark.country
-            }
-            if placemark.subAdministrativeArea != nil {
-                addressString = addressString + placemark.subAdministrativeArea + ", "
-            }
-            if placemark.postalCode != nil {
-                addressString = addressString + placemark.postalCode + " "
-            }
-            if placemark.locality != nil {
-                addressString = addressString + placemark.locality
-            }
-            if placemark.thoroughfare != nil {
-                addressString = addressString + placemark.thoroughfare
-            }
-            if placemark.subThoroughfare != nil {
-                addressString = addressString + placemark.subThoroughfare
-            }
-        } else {
-            if placemark.subThoroughfare != nil {
-                addressString = placemark.subThoroughfare + " "
-            }
-            if placemark.thoroughfare != nil {
-                addressString = addressString + placemark.thoroughfare + ", "
-            }
-            if placemark.postalCode != nil {
-                addressString = addressString + placemark.postalCode + " "
-            }
-            if placemark.locality != nil {
-                addressString = addressString + placemark.locality + ", "
-            }
-            if placemark.administrativeArea != nil {
-                addressString = addressString + placemark.administrativeArea + " "
-            }
-            if placemark.country != nil {
-                addressString = addressString + placemark.country
-            }
-        }
-        
-        println(addressString)
-        
-        objectAnnotation.title=addressString
-        
-        
     }
     
 //MARK: - END OF SUPERCLASS -

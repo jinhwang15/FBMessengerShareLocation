@@ -5,6 +5,7 @@ platform :ios, '8.0'
 target 'FBMessengerShareLocation' do
 
 pod 'FBSDKLoginKit'
+pod 'FBSDKCoreKit'
 pod 'FBSDKMessengerShareKit'
 end
 

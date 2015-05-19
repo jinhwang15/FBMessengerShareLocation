@@ -11,7 +11,6 @@
 import UIKit
 import CoreLocation
 import MapKit
-
 //MARK: - BEGİNNİNG OF SUPERCLASS -
 
 class LandingViewController: UIViewController, CLLocationManagerDelegate, UITextViewDelegate, MKMapViewDelegate, SelectedDelegate {
@@ -42,6 +41,8 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
     
     var DateInFormat:String="";
     
+    var selectedDate:NSDate!
+    
     var lastLocation: CLLocation!
     
     let locationManager = CLLocationManager()
@@ -64,6 +65,8 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
     
     findAddress()
     
+        
+
     }
         
 // MARK: - Lifecycle  -
@@ -126,6 +129,7 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
         self.pickerDoneButton.setTitle("Pick", forState: UIControlState.Normal)
         
         self.pickerDoneButton.addTarget(self, action:"pickerDoneButtonTouched:", forControlEvents: UIControlEvents.TouchUpInside)
+        
         self.datePickerAccessoryView.addSubview(self.pickerDoneButton)
         
         // picker cancel button
@@ -171,6 +175,10 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
         
         dateTextView.text=DateInFormat
         
+        selectedDate=NSDate()
+        
+        selectedDate=todaysDate
+        
         datePickerComponent .setDate(todaysDate, animated: false)
         
     }
@@ -188,16 +196,43 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
 
 // MARK: - Date Picker Accessory View Button Actions -
     
+    func dateComparison(addressString : String)
+    {
+        if selectedDate.isGreaterThanDate(NSDate())==true
+        {
+            userAddressLabel.text="Hi, I will be at "+addressString + " at "+DateInFormat;
+        }
+            
+        else
+        {
+            
+            userAddressLabel.text="Hi, I am at "+addressString + " at "+DateInFormat;
+            
+            
+        }
+//        else
+//        {
+//            userAddressLabel.text="Hi, I was at "+addressString + " at "+DateInFormat;
+//            
+//        }
+        
+    }
+    
+    
+    
     func pickerDoneButtonTouched(sender:UIButton!)
     {
         
         DateInFormat = NSDateFormatter.localizedStringFromDate(datePickerComponent.date, dateStyle: NSDateFormatterStyle.LongStyle, timeStyle: NSDateFormatterStyle.ShortStyle)
         
+        selectedDate=datePickerComponent.date
+        
         dateTextView.text = DateInFormat
         
-        userAddressLabel.text="Hi, I am at "+addressString + " at "+DateInFormat;
+        dateComparison(addressString)
         
         self.dateTextView.resignFirstResponder()
+        
     }
     func pickerCancelButtonTouched(sender:UIButton!)
     {
@@ -215,13 +250,24 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
         
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
-       
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+     
+        datePickerComponent.reloadInputViews()
+
+        datePickerComponent.setDate(selectedDate , animated: false)
+        
+        return true
+        
+        
+    }
     
+    func textViewDidBeginEditing(textView: UITextView) {
+     
       if(self.dimView.isDescendantOfView(self.view))
         {
            self.dimView.removeFromSuperview()
         }
+        
         
            self.view.addSubview(self.dimView)
     }
@@ -282,37 +328,53 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
         lastLocation = locations.last as! CLLocation
-    
+        
         addAnnotation()
-
+      
         findAddress()
         
-      }
+    }
     
+//MARK: - Reverse Geocoding Call -
     
-// TODO: - CREATE ANOTHER CLASS FOR THESE METHODS -    
     func findAddress()
     {
-        
-        CLGeocoder().reverseGeocodeLocation(lastLocation, completionHandler: {(placemarks, error)->Void in
+        CLGeocoder().reverseGeocodeLocation(lastLocation, completionHandler: {(placemarks, error) -> Void in
             
-            if (error != nil) {
+            if (error != nil)
+            {
                 println("Reverse geocoder failed with error" + error.localizedDescription
                 )
-                self.userAddressLabel.text="Couldn't find location...";
                 
-                return
+                self.addressString = "Couldn't find address."
+                
             }
-            
-            if placemarks.count > 0 {
-                let pm = placemarks[0] as! CLPlacemark
-                self.getLocationAddress(pm)
-            } else {
-                println("Problem with the data received from geocoder")
+            else
+            {
+                
+                if placemarks.count > 0
+                {
+                    let pm = placemarks[0] as! CLPlacemark
+                    
+                    self.addressString = self.lastLocation.getLocationAddress(pm)
+                    
+                    println(self.addressString)
+                    
+                    self.dateComparison(self.addressString)
+
+                    
+                }
+                else
+                {
+                    println("Problem with the data received from geocoder")
+                    
+                    self.addressString = "Couldn't find address."
+
+                }
             }
         })
     }
-    
+//MARK: - Add Annotation to Map View -
     func addAnnotation()
     
     {
@@ -331,66 +393,6 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
         objectAnnotation.coordinate = center
         self.mapView.addAnnotation(objectAnnotation)
     }
-    
-    
-    
-    func getLocationAddress(placemark : CLPlacemark) {
-        
-        
-        if (!addressString.isEmpty)
-        {
-            addressString.removeAll(keepCapacity: true)
-        }
-        
-        println("-> Finding user address...")
-        
-                    if placemark.ISOcountryCode == "TW" {
-                    if placemark.country != nil {
-                        addressString = placemark.country
-                    }
-                    if placemark.subAdministrativeArea != nil {
-                        addressString = addressString + placemark.subAdministrativeArea + ", "
-                    }
-                    if placemark.postalCode != nil {
-                        addressString = addressString + placemark.postalCode + " "
-                    }
-                    if placemark.locality != nil {
-                        addressString = addressString + placemark.locality
-                    }
-                    if placemark.thoroughfare != nil {
-                        addressString = addressString + placemark.thoroughfare
-                    }
-                    if placemark.subThoroughfare != nil {
-                        addressString = addressString + placemark.subThoroughfare
-                    }
-                } else {
-                    if placemark.subThoroughfare != nil {
-                        addressString = placemark.subThoroughfare + " "
-                    }
-                    if placemark.thoroughfare != nil {
-                        addressString = addressString + placemark.thoroughfare + ", "
-                    }
-                    if placemark.postalCode != nil {
-                        addressString = addressString + placemark.postalCode + " "
-                    }
-                    if placemark.locality != nil {
-                        addressString = addressString + placemark.locality + ", "
-                    }
-                    if placemark.administrativeArea != nil {
-                        addressString = addressString + placemark.administrativeArea + " "
-                    }
-                    if placemark.country != nil {
-                        addressString = addressString + placemark.country
-                    }
-                }
-                
-                println(addressString)
-        
-        
-        userAddressLabel.text="Hi, I am at "+addressString + " at "+DateInFormat;
-        
-            }
-    
 // MARK: - FBSDKMessengerShare Action Method -
     
     @IBAction func _shareButtonPressed(sender: AnyObject) {

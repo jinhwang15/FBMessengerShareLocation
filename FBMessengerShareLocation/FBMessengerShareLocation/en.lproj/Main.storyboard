@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1hC-cb-8EY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1hC-cb-8EY">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -99,7 +99,7 @@
                                             <constraint firstAttribute="width" constant="304" id="5z3-if-isZ"/>
                                             <constraint firstAttribute="height" constant="75" id="Hpq-q9-kU8"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -119,7 +119,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN9-xo-LJw">
-                                <rect key="frame" x="64" y="86" width="240" height="26"/>
+                                <rect key="frame" x="64" y="85" width="240" height="26"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="2mL-dg-wCH"/>
@@ -136,11 +136,11 @@
                         <color key="backgroundColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4WO-T3-8JT" firstAttribute="leading" secondItem="EkV-Kz-lk7" secondAttribute="leading" constant="8" id="03G-cH-M8g"/>
-                            <constraint firstItem="xN9-xo-LJw" firstAttribute="top" secondItem="OLd-76-GxX" secondAttribute="bottom" constant="22" id="459-Kg-WvK"/>
+                            <constraint firstItem="xN9-xo-LJw" firstAttribute="top" secondItem="OLd-76-GxX" secondAttribute="bottom" constant="21" id="459-Kg-WvK"/>
                             <constraint firstItem="4WO-T3-8JT" firstAttribute="top" secondItem="OLd-76-GxX" secondAttribute="bottom" constant="27" id="Bgj-J6-dEQ"/>
                             <constraint firstItem="skB-cF-PK4" firstAttribute="leading" secondItem="EkV-Kz-lk7" secondAttribute="leading" id="G3n-ZH-JED"/>
                             <constraint firstItem="skB-cF-PK4" firstAttribute="top" secondItem="3Tm-g5-a3x" secondAttribute="bottom" constant="8" id="N9W-Me-Wai"/>
-                            <constraint firstItem="3Tm-g5-a3x" firstAttribute="top" secondItem="xN9-xo-LJw" secondAttribute="bottom" constant="17" id="NP7-bn-Y5d"/>
+                            <constraint firstItem="3Tm-g5-a3x" firstAttribute="top" secondItem="xN9-xo-LJw" secondAttribute="bottom" constant="18" id="NP7-bn-Y5d"/>
                             <constraint firstItem="3Tm-g5-a3x" firstAttribute="leading" secondItem="EkV-Kz-lk7" secondAttribute="leading" id="Sq8-OX-X7S"/>
                             <constraint firstAttribute="bottom" secondItem="skB-cF-PK4" secondAttribute="bottom" constant="201" id="dvH-7L-9eh"/>
                             <constraint firstItem="xN9-xo-LJw" firstAttribute="leading" secondItem="4WO-T3-8JT" secondAttribute="trailing" constant="4" id="huZ-1l-We7"/>

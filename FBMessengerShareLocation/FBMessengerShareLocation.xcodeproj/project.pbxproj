@@ -14,6 +14,8 @@
 		987CE56F1B07AD5400DEE471 /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 987CE56E1B07AD5400DEE471 /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a */; };
 		987CE5711B07AD5A00DEE471 /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 987CE5701B07AD5A00DEE471 /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a */; };
 		987CE5731B07C40100DEE471 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987CE5721B07C40100DEE471 /* CoreLocation.framework */; };
+		9883B2521B0BC7FD00112E49 /* DateComparisonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883B2511B0BC7FD00112E49 /* DateComparisonService.swift */; };
+		9883B2551B0BC84900112E49 /* GettingAddressInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883B2541B0BC84900112E49 /* GettingAddressInfoService.swift */; };
 		98D8922E1B0697C4004FBF6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8922D1B0697C4004FBF6A /* AppDelegate.swift */; };
 		98D892331B0697C4004FBF6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D892311B0697C4004FBF6A /* Main.storyboard */; };
 		98D892351B0697C4004FBF6A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98D892341B0697C4004FBF6A /* Images.xcassets */; };
@@ -42,6 +44,8 @@
 		987CE56E1B07AD5400DEE471 /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation-FBSDKCoreKit.a"; path = "Pods/../build/Release-iphoneos/libPods-FBMessengerShareLocation-FBSDKCoreKit.a"; sourceTree = "<group>"; };
 		987CE5701B07AD5A00DEE471 /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation-FBSDKLoginKit.a"; path = "Pods/../build/Debug-iphoneos/libPods-FBMessengerShareLocation-FBSDKLoginKit.a"; sourceTree = "<group>"; };
 		987CE5721B07C40100DEE471 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9883B2511B0BC7FD00112E49 /* DateComparisonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateComparisonService.swift; sourceTree = "<group>"; };
+		9883B2541B0BC84900112E49 /* GettingAddressInfoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GettingAddressInfoService.swift; sourceTree = "<group>"; };
 		98D892281B0697C4004FBF6A /* FBMessengerShareLocation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBMessengerShareLocation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98D8922C1B0697C4004FBF6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98D8922D1B0697C4004FBF6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +100,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		9883B2531B0BC81800112E49 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9883B2511B0BC7FD00112E49 /* DateComparisonService.swift */,
+				9883B2541B0BC84900112E49 /* GettingAddressInfoService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		98D8921F1B0697C4004FBF6A = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				9810642A1B0816F00043329B /* AppDelegate */,
+				9883B2531B0BC81800112E49 /* Services */,
 				9810642B1B0817010043329B /* Controllers */,
 				98D892311B0697C4004FBF6A /* Main.storyboard */,
 				98D892341B0697C4004FBF6A /* Images.xcassets */,
@@ -313,6 +327,8 @@
 			files = (
 				98D892681B06D14C004FBF6A /* LoginViewController.swift in Sources */,
 				987CE56A1B077DEB00DEE471 /* LandingViewController.swift in Sources */,
+				9883B2521B0BC7FD00112E49 /* DateComparisonService.swift in Sources */,
+				9883B2551B0BC84900112E49 /* GettingAddressInfoService.swift in Sources */,
 				9810642D1B08CA690043329B /* ChooseLocationViewController.swift in Sources */,
 				98D8922E1B0697C4004FBF6A /* AppDelegate.swift in Sources */,
 			);
