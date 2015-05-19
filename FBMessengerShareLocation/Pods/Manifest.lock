@@ -17,20 +17,15 @@ PODS:
   - FBSDKLoginKit (4.1.0):
     - FBSDKCoreKit
   - FBSDKMessengerShareKit (1.2.1)
-  - FBSDKShareKit (4.1.0):
-    - FBSDKCoreKit
 
 DEPENDENCIES:
-  - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKMessengerShareKit
-  - FBSDKShareKit
 
 SPEC CHECKSUMS:
   Bolts: aac24961496d504aa56fc267cde95162a71bac39
   FBSDKCoreKit: 469ed167195f860dbd2b4c4bbaa33d2e90598db9
   FBSDKLoginKit: ff6224762732e3698f30942e4544321b8c7a23e6
   FBSDKMessengerShareKit: 519f089c21da027d56a39c345f999ac506ba65cb
-  FBSDKShareKit: 8002faf0c564ff3625eadd16e506b0b0fbf3adef
 
 COCOAPODS: 0.37.1

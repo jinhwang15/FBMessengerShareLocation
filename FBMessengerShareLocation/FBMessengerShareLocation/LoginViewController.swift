@@ -12,6 +12,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     var fbUserName : NSString!
     var fbUserEmail : NSString!
+
+    
+//MARK: - LifeCycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +25,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Check user if already logged in
         userAlreadyLoggedInCheck()
         
-    }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func userAlreadyLoggedInCheck()
@@ -47,8 +44,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             loginView.delegate = self
         }
     }
+
     
-    // Facebook Delegate Methods
+//MARK: - FBSDKLoginKit Delegate Methods -
 
     func loginButton(loginButton: FBSDKLoginButton!,
         didCompleteWithResult result: FBSDKLoginManagerLoginResult!,
@@ -76,7 +74,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         println("User Logged Out")
     }
-    
+
+//MARK - Fetch User Data -
     func returnUserData()
     {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
@@ -103,18 +102,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
         })
     }
-    // MARK: - Navigation
+// MARK: - Navigation -
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        // Get the new view controller using segue.destinationViewController.
         if (segue.identifier == "landingSegue")
         {
             var lnd = segue.destinationViewController as! LandingViewController;
             
             // Pass the user data to the new view controller.
-            lnd.userName = fbUserName as! String;
+            lnd.userName = fbUserName as! String; 
             lnd.userEmail = fbUserEmail as! String;
         }        
     }
