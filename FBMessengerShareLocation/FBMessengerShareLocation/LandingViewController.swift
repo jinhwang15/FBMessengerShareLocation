@@ -263,7 +263,7 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
     
 //MARK: - Reverse Geocoding Call -
     func findAddress()
-    {
+    { 
         CLGeocoder().reverseGeocodeLocation(lastLocation, completionHandler:
         {(placemarks, error) -> Void in
                 if (error != nil)
