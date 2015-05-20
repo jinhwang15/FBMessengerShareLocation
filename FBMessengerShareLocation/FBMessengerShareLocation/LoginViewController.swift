@@ -6,25 +6,22 @@
 //  Copyright (c) 2015 msdeveloper. All rights reserved.
 //
 
+//MARK: - IMPORTS -
 import UIKit
 
-class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+//MARK: - BEGİNNİNG OF SUPERCLASS -
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
+{
+    var fbUserFullName : NSString!
 
-    var fbUserName : NSString!
-    var fbUserEmail : NSString!
-
-    
 //MARK: - LifeCycle -
-    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
         // set Navigation Controller as Hidden
         self.navigationController?.navigationBarHidden=true;
-        
         // Check user if already logged in
         userAlreadyLoggedInCheck()
-        
     }
 
     func userAlreadyLoggedInCheck()
@@ -32,7 +29,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
             // User is already logged in, do work such as go to next view controller.
-            
             returnUserData();
         }
         else
@@ -45,33 +41,30 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
 
-    
 //MARK: - FBSDKLoginKit Delegate Methods -
-
     func loginButton(loginButton: FBSDKLoginButton!,
         didCompleteWithResult result: FBSDKLoginManagerLoginResult!,
-        error: NSError!) {
-            println("User Logged In")
-            
-            if ((error) != nil)
-            {
+        error: NSError!)
+    {
+        println("User Logged In")
+        if ((error) != nil)
+        {
                 // Process error
-            } else if result.isCancelled {
+        } else if result.isCancelled {
                 // Handle cancellations
-            } else {
+        } else {
                 // If you ask for multiple permissions at once, you
                 // should check if specific permissions missing
-                if result.grantedPermissions.contains("email")
+                if result.grantedPermissions.contains("name")
                 {
                     // Do work
-                    
                     returnUserData();
-                    
                 }
-            }
+        }
     }
     
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)
+    {
         println("User Logged Out")
     }
 
@@ -89,15 +82,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             else
             {
                 println("fetched user: \(result)")
-                
                 let userName : NSString = result.valueForKey("name") as! NSString
                 println("User Name is: \(userName)")
-                self.fbUserName=userName
-                
-                let userEmail : NSString = result.valueForKey("email") as! NSString
-                println("User Email is: \(userEmail)")
-                self.fbUserEmail=userEmail
-                
+                self.fbUserFullName=userName
                 self.performSegueWithIdentifier("landingSegue", sender: self)
             }
         })
@@ -108,11 +95,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     {
         if (segue.identifier == "landingSegue")
         {
-            var lnd = segue.destinationViewController as! LandingViewController;
-            
+            var lnd = segue.destinationViewController as! LandingViewController;            
             // Pass the user data to the new view controller.
-            lnd.userName = fbUserName as! String; 
-            lnd.userEmail = fbUserEmail as! String;
-        }        
+            lnd.userFullName = fbUserFullName as! String;
+        }
     }
 }
