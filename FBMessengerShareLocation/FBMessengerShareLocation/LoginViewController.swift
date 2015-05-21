@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
 {
     var fbUserFullName : NSString!
 
+    @IBOutlet var logoImageView: UIImageView!
 //MARK: - LifeCycle -
     override func viewDidLoad()
     {
@@ -38,6 +39,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
             loginView.center = self.view.center
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
+            
+            
         }
     }
 
@@ -46,13 +49,15 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
         didCompleteWithResult result: FBSDKLoginManagerLoginResult!,
         error: NSError!)
     {
-        println("User Logged In")
         if ((error) != nil)
         {
                 // Process error
         } else if result.isCancelled {
                 // Handle cancellations
         } else {
+            
+                println("User Logged In")
+
                 // If you ask for multiple permissions at once, you
                 // should check if specific permissions missing
                 if result.grantedPermissions.contains("name")
