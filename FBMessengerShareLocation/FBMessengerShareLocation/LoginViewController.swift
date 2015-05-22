@@ -11,6 +11,7 @@ import UIKit
 
 //MARK: - BEGİNNİNG OF SUPERCLASS -
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
+    
 {
     var fbUserFullName : NSString!
 
@@ -35,8 +36,11 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
         else
         {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
+            
+            loginView.frame=CGRectMake(self.view.center.x, self.view.center.y, 150, 80)
+            
             self.view.addSubview(loginView)
-            loginView.center = self.view.center
+            //loginView.center = self.view.center
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
             
@@ -56,16 +60,14 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate
                 // Handle cancellations
         } else {
             
-                println("User Logged In")
+                    println("User Logged In")
 
                 // If you ask for multiple permissions at once, you
                 // should check if specific permissions missing
-                if result.grantedPermissions.contains("name")
-                {
                     // Do work
+            
                     returnUserData();
                 }
-        }
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!)

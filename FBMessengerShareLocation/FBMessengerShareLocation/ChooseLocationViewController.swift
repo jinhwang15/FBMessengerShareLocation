@@ -31,21 +31,53 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
     override func viewDidDisappear(animated: Bool)
     {
         // There is a general bug releasing mapview cache
-        self.mapView.removeFromSuperview()
+        applyMapViewMemoryHotFix()
     }
-    
+        
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         var center:CLLocationCoordinate2D
+        
         if(self.selectedLocation != nil)
         {
-            center = CLLocationCoordinate2D(latitude:self.selectedLocation!.coordinate.latitude, longitude: self.selectedLocation!.coordinate.longitude)
+            center = CLLocationCoordinate2D(latitude:self.selectedLocation!.coordinate.latitude, longitude:self.selectedLocation!.coordinate.longitude)
         }
         else
         {
             center = CLLocationCoordinate2D(latitude:37.3316309, longitude:-122.029584)
+            self.selectedLocation=CLLocation(latitude:center.latitude, longitude:center.longitude)
         }
+        addAnnotation(center)
+        
+        findAddress()
+    }
+    
+//MARK: - MapView Memory Releasing -
+    
+    func applyMapViewMemoryHotFix()
+    {
+        switch (self.mapView.mapType) {
+        
+        case MKMapType.Standard:
+        self.mapView.mapType = MKMapType.Hybrid
+            
+        default:
+            break;
+        }
+
+        self.mapView.showsUserLocation = false;
+        self.mapView.removeAnnotations(self.mapView.annotations)
+        self.mapView.delegate = nil;
+        self.mapView.removeFromSuperview();
+        self.mapView = nil;
+    }
+    
+//MARK: - Add Annotation to Map View -
+    
+    func addAnnotation(center : CLLocationCoordinate2D)
+    {
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
         if(self.mapView.annotations.count>0)
@@ -53,11 +85,22 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
             self.mapView.removeAnnotations(self.mapView.annotations)
         }
         objectAnnotation.coordinate = center
-        objectAnnotation.title = "Hold on for a while and Drag me"
         self.mapView.addAnnotation(objectAnnotation)
     }
 
 //MARK: - MKMapViewDelegate Methods -
+    
+    func mapView(mapView: MKMapView!, didFailToLocateUserWithError error: NSError!) {
+        
+        
+    }
+    
+    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+        
+    }
+    
+    
+    
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState)
     {
         if newState == MKAnnotationViewDragState.Ending
@@ -65,26 +108,9 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
             let ann = view.annotation
             println("annotation dropped at: \(ann.coordinate.latitude),\(ann.coordinate.longitude)")
             self.selectedLocation=CLLocation(latitude: ann.coordinate.latitude, longitude: ann.coordinate.longitude)
-            CLGeocoder().reverseGeocodeLocation(self.selectedLocation, completionHandler:
-                {(placemarks, error)->Void in
-                    if (error != nil)
-                    {
-                        println("Reverse geocoder failed with error" + error.localizedDescription)
-                        self.objectAnnotation.title="Couldn't find address info...";
-                        return
-                    }
-                    if placemarks.count > 0
-                    {
-                        let pm = placemarks[0] as! CLPlacemark
-                        self.addressString = self.selectedLocation!.getLocationAddress(pm)
-                        self.objectAnnotation.title=self.addressString
-                    }
-                    else
-                    {
-                        self.objectAnnotation.title="Couldn't find address info.";
-                        println("Problem with the data received from geocoder")
-                    }
-                })
+            
+            findAddress()
+            
         }
     }
 
@@ -102,6 +128,30 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
         return nil
      }
 
+    func findAddress()
+    {
+        CLGeocoder().reverseGeocodeLocation(self.selectedLocation, completionHandler:
+            {(placemarks, error)->Void in
+                if (error != nil)
+                {
+                    println("Reverse geocoder failed with error" + error.localizedDescription)
+                    self.objectAnnotation.title="Couldn't find address info...";
+                    return
+                }
+                if placemarks.count > 0
+                {
+                    let pm = placemarks[0] as! CLPlacemark
+                    self.addressString = self.selectedLocation!.getLocationAddress(pm)
+                    self.objectAnnotation.title=self.addressString
+                }
+                else
+                {
+                    self.objectAnnotation.title="Couldn't find address info.";
+                    println("Problem with the data received from geocoder")
+                }
+        })
+    }
+    
 //MARK: - Pick and Cancel Button Actions -
     @IBAction func cancelButtonTouched(sender: UIButton)
     {

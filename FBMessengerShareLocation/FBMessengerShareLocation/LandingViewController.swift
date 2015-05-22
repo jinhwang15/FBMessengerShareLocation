@@ -31,7 +31,9 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
     var addressString : String = ""                // Latest Address Value
     let locationManager = CLLocationManager()
     var lastLocation: CLLocation!                  // Latest updated Location Value
-
+    var loadingAnimation : UIActivityIndicatorView!
+    
+    
 // MARK: - Selected Delegate Method -
     func locationSelected(selectedLocation: CLLocation!)
     {
@@ -74,6 +76,11 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
         initializeDatePickerAccessoryView()
         initializeDatePickerComponent()
         initializeDatePickerAccessoryInputViewButtons()
+        
+        // Activity Indicator initialize
+        loadingAnimation = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        loadingAnimation.center=self.view.center
+        
     }
     func initializeMapView()
     {
@@ -131,16 +138,19 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
         var dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         dateTextView.text=NSDateFormatter.localizedStringFromDate(selectedDate, dateStyle: NSDateFormatterStyle.LongStyle, timeStyle: NSDateFormatterStyle.ShortStyle)
+        
         datePickerComponent.minimumDate=selectedDate
         datePickerComponent .setDate(selectedDate, animated: false)
     }
     
     func createFBSDKMessengerButton()
     {
+
         var shareButton = FBSDKMessengerShareButton.rectangularButtonWithStyle(.Blue) // Create a FBSDKMessengerShareButton instance as Share Button
+        
         shareButton.addTarget(self, action: "_shareButtonPressed:" , forControlEvents: .TouchUpInside) // add Target to Share Button
         self.view.addSubview(shareButton)
-        shareButton.frame=CGRectMake(self.view.frame.origin.x + 30, self.view.frame.size.height - 70, 260, 50)
+        shareButton.frame=CGRectMake((self.view.frame.size.width - 267) / 2 , self.view.frame.size.height - 70, 267, 50)
     }
 // MARK: - Date Picker Accessory View Button Actions -
     
@@ -279,19 +289,24 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
                         self.addressString = self.lastLocation.getLocationAddress(pm)
                         println(self.addressString)
                         self.dateComparison(self.addressString)
+                        
                     }
                     else
                     {
                         println("Problem with the data received from geocoder")
                         self.addressString = "Couldn't find address."
                     }
+                    
                 }
+                self.loadingAnimation.stopAnimating()
         })
     }
 //MARK: - Add Annotation to Map View -
     
     func addAnnotation()
     {
+        loadingAnimation.startAnimating()
+        
         let center = CLLocationCoordinate2D(latitude:self.lastLocation.coordinate.latitude, longitude: self.lastLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
@@ -307,27 +322,39 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
     
     @IBAction func _shareButtonPressed(sender: AnyObject)
     {
-        let result = FBSDKMessengerSharer.messengerPlatformCapabilities().rawValue & FBSDKMessengerPlatformCapability.Image.rawValue
-        if result != 0
+        
+        if(lastLocation != nil)
         {
-            // ok now share
-            UIGraphicsBeginImageContext(self.currentLocationView.bounds.size);
-            
+            let result = FBSDKMessengerSharer.messengerPlatformCapabilities().rawValue & FBSDKMessengerPlatformCapability.Image.rawValue
+            if result != 0
+            {
+                // ok now share
+                UIGraphicsBeginImageContext(self.currentLocationView.bounds.size);
             self.currentLocationView.drawViewHierarchyInRect(self.currentLocationView.bounds, afterScreenUpdates: true)
-            var image:UIImage = UIGraphicsGetImageFromCurrentImageContext();
+                var image:UIImage = UIGraphicsGetImageFromCurrentImageContext();
             
-            UIGraphicsEndImageContext();
+                UIGraphicsEndImageContext();
             
-            var sharingImage: UIImage
+                var sharingImage: UIImage
             
-            sharingImage = image;
+                sharingImage = image;
             
-            FBSDKMessengerSharer.shareImage(sharingImage, withOptions:nil)
+                FBSDKMessengerSharer.shareImage(sharingImage, withOptions:nil)
+            }
+            else
+            {
+                // not installed then open link. Note simulator doesn't open iTunes store.
+                UIApplication.sharedApplication().openURL(NSURL(string: "itms://itunes.apple.com/us/app/facebook-messenger/id454638411?mt=8")!)
+            }
         }
         else
         {
-            // not installed then open link. Note simulator doesn't open iTunes store.
-            UIApplication.sharedApplication().openURL(NSURL(string: "itms://itunes.apple.com/us/app/facebook-messenger/id454638411?mt=8")!)
+            let alertView = UIAlertController(title:"Error", message:"Sorry, no location data to share", preferredStyle: .Alert)
+            
+            alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+            
+            presentViewController(alertView, animated: true, completion: nil)
+            
         }
     }
     

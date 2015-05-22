@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set status bar style to Light Content
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
-        Fabric.with([Crashlytics()])
+        //Fabric.with([Crashlytics()])
 
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions);
 

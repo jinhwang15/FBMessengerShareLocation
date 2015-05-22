@@ -33,8 +33,6 @@
 	<string>1.0.0</string>
 	<key>Fabric</key>
 	<dict>
-		<key>APIKey</key>
-		<string>b17a07efc114b29bf677b8797562b8a0b1a3edcd</string>
 		<key>Kits</key>
 		<array>
 			<dict>
@@ -65,13 +63,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>

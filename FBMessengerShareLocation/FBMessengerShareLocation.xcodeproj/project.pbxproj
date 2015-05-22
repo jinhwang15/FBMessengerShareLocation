@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		9810642D1B08CA690043329B /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9810642C1B08CA680043329B /* ChooseLocationViewController.swift */; };
 		9810642F1B08CFF20043329B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9810642E1B08CFF20043329B /* MapKit.framework */; };
+		98437FCD1B0F21B300AF3D3B /* libPods-FBMessengerShareLocation-Bolts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98437FCC1B0F21B300AF3D3B /* libPods-FBMessengerShareLocation-Bolts.a */; };
+		98437FCF1B0F21BA00AF3D3B /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98437FCE1B0F21BA00AF3D3B /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a */; };
+		98437FD11B0F21C100AF3D3B /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98437FD01B0F21C100AF3D3B /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a */; };
+		98437FD31B0F21C600AF3D3B /* libPods-FBMessengerShareLocation-FBSDKMessengerShareKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98437FD21B0F21C600AF3D3B /* libPods-FBMessengerShareLocation-FBSDKMessengerShareKit.a */; };
+		98437FD51B0F21CC00AF3D3B /* libPods-FBMessengerShareLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98437FD41B0F21CC00AF3D3B /* libPods-FBMessengerShareLocation.a */; };
 		987CE56A1B077DEB00DEE471 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987CE5691B077DEB00DEE471 /* LandingViewController.swift */; };
 		987CE5731B07C40100DEE471 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 987CE5721B07C40100DEE471 /* CoreLocation.framework */; };
 		9883B2521B0BC7FD00112E49 /* DateComparisonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9883B2511B0BC7FD00112E49 /* DateComparisonService.swift */; };
@@ -54,6 +59,11 @@
 		4544552169647B30D1CAC4C9 /* libPods-FBMessengerShareLocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FBMessengerShareLocation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9810642C1B08CA680043329B /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
 		9810642E1B08CFF20043329B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		98437FCC1B0F21B300AF3D3B /* libPods-FBMessengerShareLocation-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation-Bolts.a"; path = "Pods/../build/Debug-iphoneos/libPods-FBMessengerShareLocation-Bolts.a"; sourceTree = "<group>"; };
+		98437FCE1B0F21BA00AF3D3B /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation-FBSDKCoreKit.a"; path = "Pods/../build/Debug-iphoneos/libPods-FBMessengerShareLocation-FBSDKCoreKit.a"; sourceTree = "<group>"; };
+		98437FD01B0F21C100AF3D3B /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation-FBSDKLoginKit.a"; path = "Pods/../build/Debug-iphoneos/libPods-FBMessengerShareLocation-FBSDKLoginKit.a"; sourceTree = "<group>"; };
+		98437FD21B0F21C600AF3D3B /* libPods-FBMessengerShareLocation-FBSDKMessengerShareKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation-FBSDKMessengerShareKit.a"; path = "Pods/../build/Debug-iphoneos/libPods-FBMessengerShareLocation-FBSDKMessengerShareKit.a"; sourceTree = "<group>"; };
+		98437FD41B0F21CC00AF3D3B /* libPods-FBMessengerShareLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation.a"; path = "Pods/../build/Debug-iphoneos/libPods-FBMessengerShareLocation.a"; sourceTree = "<group>"; };
 		987CE5661B0776A500DEE471 /* MessengerShareLocation-BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MessengerShareLocation-BridgingHeader.h"; sourceTree = "<group>"; };
 		987CE5691B077DEB00DEE471 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		987CE56E1B07AD5400DEE471 /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FBMessengerShareLocation-FBSDKCoreKit.a"; path = "Pods/../build/Release-iphoneos/libPods-FBMessengerShareLocation-FBSDKCoreKit.a"; sourceTree = "<group>"; };
@@ -97,6 +107,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98437FD51B0F21CC00AF3D3B /* libPods-FBMessengerShareLocation.a in Frameworks */,
+				98437FD31B0F21C600AF3D3B /* libPods-FBMessengerShareLocation-FBSDKMessengerShareKit.a in Frameworks */,
+				98437FD11B0F21C100AF3D3B /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a in Frameworks */,
+				98437FCF1B0F21BA00AF3D3B /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a in Frameworks */,
+				98437FCD1B0F21B300AF3D3B /* libPods-FBMessengerShareLocation-Bolts.a in Frameworks */,
 				9810642F1B08CFF20043329B /* MapKit.framework in Frameworks */,
 				987CE5731B07C40100DEE471 /* CoreLocation.framework in Frameworks */,
 				98F73C1E1B0D5051000BE135 /* Fabric.framework in Frameworks */,
@@ -228,6 +243,11 @@
 		EF52ADEF3C9C06902BC750A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				98437FD41B0F21CC00AF3D3B /* libPods-FBMessengerShareLocation.a */,
+				98437FD21B0F21C600AF3D3B /* libPods-FBMessengerShareLocation-FBSDKMessengerShareKit.a */,
+				98437FD01B0F21C100AF3D3B /* libPods-FBMessengerShareLocation-FBSDKLoginKit.a */,
+				98437FCE1B0F21BA00AF3D3B /* libPods-FBMessengerShareLocation-FBSDKCoreKit.a */,
+				98437FCC1B0F21B300AF3D3B /* libPods-FBMessengerShareLocation-Bolts.a */,
 				98F73C1C1B0D5051000BE135 /* Fabric.framework */,
 				98F73C1D1B0D5051000BE135 /* Crashlytics.framework */,
 				9810642E1B08CFF20043329B /* MapKit.framework */,
@@ -556,9 +576,13 @@
 				INFOPLIST_FILE = FBMessengerShareLocation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FBMessengerShareLocation/MessengerShareLocation-BridgingHeader.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -575,9 +599,13 @@
 				INFOPLIST_FILE = FBMessengerShareLocation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FBMessengerShareLocation/MessengerShareLocation-BridgingHeader.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -50,7 +50,7 @@
                                 <rect key="frame" x="66" y="127" width="468" height="33"/>
                                 <color key="backgroundColor" red="0.63921568630000003" green="0.0" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="Choose Different Location">
+                                <state key="normal" title="Choose Location">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -77,7 +77,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN9-xo-LJw">
-                                <rect key="frame" x="66" y="71" width="518" height="34"/>
+                                <rect key="frame" x="66" y="73" width="518" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -89,7 +89,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="skB-cF-PK4">
                                 <rect key="frame" x="16" y="173" width="568" height="349"/>
                                 <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" pitchEnabled="NO" showsBuildings="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osL-EZ-2HX">
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osL-EZ-2HX">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="267"/>
                                     </mapView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="149" text="I am at ... at ..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAh-eD-RPY">
@@ -136,11 +136,11 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.62745098039215685" green="0.62745098039215685" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4WO-T3-8JT" firstAttribute="top" secondItem="OLd-76-GxX" secondAttribute="bottom" constant="11" id="3TS-bA-jjc"/>
                             <constraint firstItem="skB-cF-PK4" firstAttribute="leading" secondItem="EkV-Kz-lk7" secondAttribute="leadingMargin" id="5Aw-eS-2N2"/>
-                            <constraint firstItem="xN9-xo-LJw" firstAttribute="top" secondItem="OLd-76-GxX" secondAttribute="bottom" constant="7" id="5u8-d6-RdW"/>
+                            <constraint firstItem="xN9-xo-LJw" firstAttribute="top" secondItem="OLd-76-GxX" secondAttribute="bottom" constant="9" id="5u8-d6-RdW"/>
                             <constraint firstItem="xN9-xo-LJw" firstAttribute="leading" secondItem="4WO-T3-8JT" secondAttribute="trailing" constant="4" id="6PD-8g-iDM"/>
                             <constraint firstItem="xN9-xo-LJw" firstAttribute="leading" secondItem="4WO-T3-8JT" secondAttribute="trailing" constant="4" id="8Ph-CP-03p"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xN9-xo-LJw" secondAttribute="trailing" id="CDr-tc-m4Y"/>
@@ -151,7 +151,7 @@
                             <constraint firstItem="skB-cF-PK4" firstAttribute="top" secondItem="4WO-T3-8JT" secondAttribute="bottom" constant="69" id="dRb-In-Vy2"/>
                             <constraint firstAttribute="bottom" secondItem="skB-cF-PK4" secondAttribute="bottom" constant="201" id="dvH-7L-9eh"/>
                             <constraint firstItem="3Tm-g5-a3x" firstAttribute="leading" secondItem="EkV-Kz-lk7" secondAttribute="leadingMargin" constant="50" id="eEb-cD-yDV"/>
-                            <constraint firstItem="3Tm-g5-a3x" firstAttribute="top" secondItem="xN9-xo-LJw" secondAttribute="bottom" constant="22" id="u27-gS-mLA"/>
+                            <constraint firstItem="3Tm-g5-a3x" firstAttribute="top" secondItem="xN9-xo-LJw" secondAttribute="bottom" constant="20" id="u27-gS-mLA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="skB-cF-PK4" secondAttribute="trailing" id="uCW-Yi-EKu"/>
                         </constraints>
                         <variation key="default">
@@ -195,18 +195,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" mapType="standard" pitchEnabled="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR5-NB-1WW">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lR5-NB-1WW">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <outlet property="delegate" destination="Xmg-V3-Xqm" id="4aw-pz-VxL"/>
                                 </connections>
                             </mapView>
-                            <view alpha="0.49999999999999961" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CzZ-HG-Mep">
-                                <rect key="frame" x="0.0" y="555" width="600" height="45"/>
+                            <view alpha="0.49999999999999961" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CzZ-HG-Mep">
+                                <rect key="frame" x="0.0" y="567" width="600" height="33"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z98-Sv-ew3">
-                                <rect key="frame" x="510" y="555" width="55" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z98-Sv-ew3">
+                                <rect key="frame" x="510" y="567" width="55" height="33"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Select">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -216,8 +216,8 @@
                                     <action selector="selectLocationButtonTouched:" destination="Xmg-V3-Xqm" eventType="touchUpInside" id="R9M-lR-ZLL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzp-bC-DkF">
-                                <rect key="frame" x="35" y="555" width="55" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzp-bC-DkF">
+                                <rect key="frame" x="35" y="567" width="55" height="33"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -274,6 +274,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1hC-cb-8EY" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zTt-fv-Fzb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
