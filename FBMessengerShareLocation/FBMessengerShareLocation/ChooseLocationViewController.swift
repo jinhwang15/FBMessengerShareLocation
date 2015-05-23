@@ -26,7 +26,8 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
     var objectAnnotation = MKPointAnnotation()
     var addressString : String=""
     var selectedLocation: CLLocation?
-  
+    var loadingAnimation : UIActivityIndicatorView!
+
 //MARK: - LifeCycle -
     override func viewDidDisappear(animated: Bool)
     {
@@ -49,6 +50,13 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
             center = CLLocationCoordinate2D(latitude:37.3316309, longitude:-122.029584)
             self.selectedLocation=CLLocation(latitude:center.latitude, longitude:center.longitude)
         }
+        
+        // Activity Indicator initialize
+        loadingAnimation = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        loadingAnimation.center=self.view.center
+        loadingAnimation.hidesWhenStopped=true
+        self.view.addSubview(loadingAnimation)
+        
         addAnnotation(center)
         
         findAddress()
@@ -78,6 +86,8 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
     
     func addAnnotation(center : CLLocationCoordinate2D)
     {
+        loadingAnimation.startAnimating()
+
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
         if(self.mapView.annotations.count>0)
@@ -89,17 +99,6 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
     }
 
 //MARK: - MKMapViewDelegate Methods -
-    
-    func mapView(mapView: MKMapView!, didFailToLocateUserWithError error: NSError!) {
-        
-        
-    }
-    
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-        
-    }
-    
-    
     
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState)
     {
@@ -149,6 +148,9 @@ class ChooseLocationViewController: UIViewController, MKMapViewDelegate {
                     self.objectAnnotation.title="Couldn't find address info.";
                     println("Problem with the data received from geocoder")
                 }
+                
+                self.loadingAnimation.stopAnimating()
+
         })
     }
     

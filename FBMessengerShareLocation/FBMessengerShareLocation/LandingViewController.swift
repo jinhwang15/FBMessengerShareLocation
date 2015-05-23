@@ -58,7 +58,10 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
         createFBSDKMessengerButton()
         initializeLocationManager()
     }
-    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+    }
 // MARK: - Preparing Components and Objects -
     func initializeLocationManager()
     {
@@ -78,9 +81,10 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
         initializeDatePickerAccessoryInputViewButtons()
         
         // Activity Indicator initialize
-        loadingAnimation = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        loadingAnimation = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
         loadingAnimation.center=self.view.center
-        
+        loadingAnimation.hidesWhenStopped=true
+        self.view.addSubview(loadingAnimation)
     }
     func initializeMapView()
     {
@@ -91,20 +95,26 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
     }
     func initializeDatePickerInputView()
     {
+
         self.datePickerView=UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 210))
         // set TextField's input view and accessory view
-        dateTextView.inputView=self.datePickerView
-        dateTextView.tintColor=UIColor .clearColor()
+        self.dateTextView.inputView=self.datePickerView
+        self.dateTextView.tintColor=UIColor .clearColor()
+            
     }
     func initializeDatePickerAccessoryView()
     {
+
         self.datePickerAccessoryView=UIView()
         self.datePickerAccessoryView.frame=CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 50)
         self.datePickerView.addSubview(self.datePickerAccessoryView);
+    
     }
 
     func initializeDimView()
     {
+
+        
         // covers self.view when datePickerComponent is enabled
         self.dimButton=UIButton(frame: UIScreen.mainScreen().bounds)                              // dim View frame
         self.dimButton.backgroundColor=UIColor.blackColor()                                       // set Background as blackColor
@@ -114,7 +124,8 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
     
     func initializeDatePickerAccessoryInputViewButtons()
     {
-    // picker done button
+
+            // picker done button
         self.pickerDoneButton=UIButton()
         self.pickerDoneButton.setTitle("Pick", forState: UIControlState.Normal)
         self.pickerDoneButton.addTarget(self, action:"pickerDoneButtonTouched:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -127,6 +138,7 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
         self.pickerCancelButton.addTarget(self, action:"pickerCancelButtonTouched:", forControlEvents: UIControlEvents.TouchUpInside)
         self.datePickerAccessoryView.addSubview(self.pickerCancelButton)
         self.pickerCancelButton.frame=CGRectMake(0, 0, 60, self.datePickerAccessoryView.frame.size.height)
+
     }
     
     func initializeDatePickerComponent()
@@ -193,6 +205,7 @@ class LandingViewController: UIViewController, CLLocationManagerDelegate, UIText
     {
         datePickerComponent.reloadInputViews()
         datePickerComponent.setDate(selectedDate , animated: false)
+        
         return true
     }
     

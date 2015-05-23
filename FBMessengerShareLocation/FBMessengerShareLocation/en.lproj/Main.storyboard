@@ -46,7 +46,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Tm-g5-a3x">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Tm-g5-a3x">
                                 <rect key="frame" x="66" y="127" width="468" height="33"/>
                                 <color key="backgroundColor" red="0.63921568630000003" green="0.0" blue="0.12549019610000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
@@ -76,7 +76,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN9-xo-LJw">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xN9-xo-LJw">
                                 <rect key="frame" x="66" y="73" width="518" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,23 +86,38 @@
                                     <outlet property="delegate" destination="F9Z-Wz-eWb" id="V1e-SM-isk"/>
                                 </connections>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="skB-cF-PK4">
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="skB-cF-PK4">
                                 <rect key="frame" x="16" y="173" width="568" height="349"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osL-EZ-2HX">
                                         <rect key="frame" x="0.0" y="0.0" width="568" height="267"/>
                                     </mapView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="149" text="I am at ... at ..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAh-eD-RPY">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="I am at ... at ..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAh-eD-RPY">
                                         <rect key="frame" x="8" y="275" width="552" height="66"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="101" id="vcp-rd-uhc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="vcp-rd-uhc"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="vcp-rd-uhc"/>
+                                            </mask>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="osL-EZ-2HX" secondAttribute="trailing" id="1Zu-cn-C3f"/>
-                                    <constraint firstAttribute="centerY" secondItem="SAh-eD-RPY" secondAttribute="centerY" constant="-133.5" id="3zP-HK-4Yt"/>
+                                    <constraint firstAttribute="centerY" secondItem="SAh-eD-RPY" secondAttribute="centerY" constant="-133.5" id="3zP-HK-4Yt">
+                                        <variation key="widthClass=compact" constant="-116"/>
+                                    </constraint>
                                     <constraint firstItem="SAh-eD-RPY" firstAttribute="top" secondItem="osL-EZ-2HX" secondAttribute="bottom" constant="8" id="4Fe-cq-hYt"/>
                                     <constraint firstItem="osL-EZ-2HX" firstAttribute="top" secondItem="skB-cF-PK4" secondAttribute="top" id="E8C-A6-vtm"/>
                                     <constraint firstItem="osL-EZ-2HX" firstAttribute="top" secondItem="skB-cF-PK4" secondAttribute="top" id="EDM-mU-dFo"/>
@@ -132,6 +147,12 @@
                                         <exclude reference="NBy-0b-EQL"/>
                                         <exclude reference="VkL-Eb-kBz"/>
                                         <exclude reference="mdW-Bu-udb"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="3zP-HK-4Yt"/>
+                                        <exclude reference="d70-Nn-0ju"/>
                                     </mask>
                                 </variation>
                             </view>
